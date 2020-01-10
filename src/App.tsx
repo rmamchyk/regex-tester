@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.scss';
+import TextAreaHighlight from './components/TextareaHighlight';
 
 const App: React.FC = () => {
   return (
     <div>
-      Hello World
+      <TextAreaHighlight />
     </div>
   );
 }
