@@ -1,11 +1,5 @@
 [
     {
-        "name": "All Tokens",
-        "items": [
-
-        ]
-    },
-    {
         "name": "Common Tokens",
         "items": [
             {
@@ -14,7 +8,7 @@
             },
             {
                 "name": "A character except: a, b or c",
-                "matcher": "[^abc]" 
+                "matcher": "[^abc]"
             },
             {
                 "name": "A character in the range: a-z",
@@ -39,6 +33,10 @@
             {
                 "name": "Any non-whitespace character",
                 "matcher": "\\S"
+            },
+            {
+                "name": "Any digit",
+                "matcher": "\\d"
             },
             {
                 "name": "Any non-digit",
@@ -151,7 +149,70 @@
     {
         "name": "Meta Sequences",
         "items": [
-            
+            {
+                "name": "Any single character",
+                "matcher": "."
+            },
+            {
+                "name": "Any whitespace character",
+                "matcher": "\\s"
+            },
+            {
+                "name": "Any non-whitespace character",
+                "matcher": "\\S"
+            },
+            {
+                "name": "Any digit",
+                "matcher": "\\d"
+            },
+            {
+                "name": "Any non-digit",
+                "matcher": "\\D"
+            },
+            {
+                "name": "Any word character",
+                "matcher": "\\w"
+            },
+            {
+                "name": "Any non-word character",
+                "matcher": "\\W"
+            },
+            {
+                "name": "Vertical whitespace character",
+                "matcher": "\\v"
+            },
+            {
+                "name": "Match nth subpattern",
+                "matcher": "\\n"
+            },
+            {
+                "name": "Match subpattern `name`",
+                "matcher": "\\k<name>"
+            },
+            {
+                "name": "Hex character YYYY",
+                "matcher": "\\uYYYY"
+            },
+            {
+                "name": "Hex character YY",
+                "matcher": "\\xYY"
+            },
+            {
+                "name": "Octal character ddd",
+                "matcher": "\\ddd"
+            },
+            {
+                "name": "Control character Y",
+                "matcher": "\\cY"
+            },
+            {
+                "name": "Backspace character",
+                "matcher": "[\\b]"
+            },
+            {
+                "name": "Makes any character literal",
+                "matcher": "\\"
+            }
         ]
     },
     {
@@ -186,33 +247,153 @@
                 "matcher": "a*" 
             },
             {
-                "name": "Lazy quantifier a*?",
-                "matcher": "^" 
+                "name": "Lazy quantifier",
+                "matcher": "a*?" 
             }
         ]
     },
     {
         "name": "Group Constructs",
         "items": [
-            
+            {
+                "name": "Capture everything enclosed",
+                "matcher": "(...)"
+            },
+            {
+                "name": "Match either a or b",
+                "matcher": "(a|b)"
+            }, 
+            {
+                "name": "Match everything enclosed",
+                "matcher": "(?:...)"
+            }, 
+            {
+                "name": "Named Capturing Group",
+                "matcher": "(?<name>...)"
+            }, 
+            {
+                "name": "Positive Lookahead",
+                "matcher": "(?=...)"
+            }, 
+            {
+                "name": "Negative Lookahead",
+                "matcher": "(?!...)"
+            }, 
+            {
+                "name": "Positive Lookbehind",
+                "matcher": "(?<=...)"
+            }, 
+            {
+                "name": "Negative Lookbehind",
+                "matcher": "(?<!...)"
+            }
         ]
     },
     {
         "name": "Character Classes",
         "items": [
-            
+            {
+                "name": "A single character of: a, b or c",
+                "matcher": "[abc]" 
+            },
+            {
+                "name": "A character except: a, b or c",
+                "matcher": "[^abc]" 
+            },
+            {
+                "name": "A character in the range: a-z",
+                "matcher": "[a-z]"
+            },
+            {
+                "name": "A character not in the range: a-z",
+                "matcher": "[^a-z]"
+            },
+            {
+                "name": "A character in the range: a-z or A-Z",
+                "matcher": "[a-zA-Z]"
+            } 
         ]
     },
     {
         "name": "Flags/Modifiers",
         "items": [
-            
+            {
+                "name": "Global",
+                "matcher": "g" 
+            },
+            {
+                "name": "Multiline",
+                "matcher": "m" 
+            },
+            {
+                "name": "Case insensitive",
+                "matcher": "i" 
+            },
+            {
+                "name": "Sticky - searches in strings only from the index of the last match",
+                "matcher": "y" 
+            },
+            {
+                "name": "Enable unicode support",
+                "matcher": "u" 
+            }
         ]
     },
     {
         "name": "Substitution",
         "items": [
-            
+            {
+                "name": "Contents in capture group 1",
+                "matcher": "$1" 
+            },
+            {
+                "name": "Contents before match",
+                "matcher": "$`" 
+            },
+            {
+                "name": "Contents after match",
+                "matcher": "$'" 
+            },
+            {
+                "name": "Complete match contents",
+                "matcher": "$&" 
+            },
+            {
+                "name": "Hexadecimal replacement values",
+                "matcher": "\\x20" 
+            },
+            {
+                "name": "Hexadecimal replacement values",
+                "matcher": "\\x{06fa}" 
+            },
+            {
+                "name": "Tab",
+                "matcher": "\\t" 
+            },
+            {
+                "name": "Carriage return",
+                "matcher": "\\r" 
+            },
+            {
+                "name": "Newline",
+                "matcher": "\\n" 
+            },
+            {
+                "name": "Form-feed",
+                "matcher": "\\f" 
+            },
+            {
+                "name": "Uppercase Transformation",
+                "matcher": "\\U" 
+            },
+            {
+                "name": "Lowercase Transformation",
+                "matcher": "\\L" 
+            },
+            {
+                "name": "Terminate any Transformation",
+                "matcher": "\\E" 
+            }
         ]
     }
 ]
