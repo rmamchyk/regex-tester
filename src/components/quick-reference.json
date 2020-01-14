@@ -1,0 +1,218 @@
+[
+    {
+        "name": "All Tokens",
+        "items": [
+
+        ]
+    },
+    {
+        "name": "Common Tokens",
+        "items": [
+            {
+                "name": "A single character of: a, b or c",
+                "matcher": "[abc]" 
+            },
+            {
+                "name": "A character except: a, b or c",
+                "matcher": "[^abc]" 
+            },
+            {
+                "name": "A character in the range: a-z",
+                "matcher": "[a-z]"
+            },
+            {
+                "name": "A character not in the range: a-z",
+                "matcher": "[^a-z]"
+            },
+            {
+                "name": "A character in the range: a-z or A-Z",
+                "matcher": "[a-zA-Z]"
+            },
+            {
+                "name": "Any single character",
+                "matcher": "."
+            },
+            {
+                "name": "Any whitespace character",
+                "matcher": "\\s"
+            },
+            {
+                "name": "Any non-whitespace character",
+                "matcher": "\\S"
+            },
+            {
+                "name": "Any non-digit",
+                "matcher": "\\D"
+            },
+            {
+                "name": "Any word character",
+                "matcher": "\\w"
+            },
+            {
+                "name": "Any non-word character",
+                "matcher": "\\W"
+            },
+            {
+                "name": "Capture everything enclosed",
+                "matcher": "(...)"
+            },
+            {
+                "name": "Match either a or b",
+                "matcher": "(a|b)"
+            },
+            {
+                "name": "Match either a or b",
+                "matcher": "(a|b)"
+            },
+            {
+                "name": "Zero or one of a",
+                "matcher": "a?" 
+            },
+            {
+                "name": "Zero or more of a",
+                "matcher": "a*" 
+            },
+            {
+                "name": "One or more of a",
+                "matcher": "a+" 
+            },
+            {
+                "name": "Exactly 3 of a",
+                "matcher": "a{3}" 
+            },
+            {
+                "name": "3 or more of a",
+                "matcher": "a{3,}" 
+            },
+            {
+                "name": "Between 3 and 6 of a",
+                "matcher": "a{3,6}" 
+            },
+            {
+                "name": "Start of string",
+                "matcher": "^" 
+            },
+            {
+                "name": "End of string",
+                "matcher": "&" 
+            },
+            {
+                "name": "A word boundary",
+                "matcher": "\\b" 
+            },
+            {
+                "name": "Non-word boundary",
+                "matcher": "\\B" 
+            }
+        ]
+    },
+    {
+        "name": "General Tokens",
+        "items": [
+            {
+                "name": "Newline",
+                "matcher": "\\n" 
+            },
+            {
+                "name": "Carriage return",
+                "matcher": "\\r" 
+            },
+            {
+                "name": "Tab",
+                "matcher": "\\t" 
+            },
+            {
+                "name": "Null character",
+                "matcher": "\\0" 
+            }
+        ]
+    },
+    {
+        "name": "Anchors",
+        "items": [
+            {
+                "name": "Start of string",
+                "matcher": "^" 
+            },
+            {
+                "name": "End of string",
+                "matcher": "&" 
+            },
+            {
+                "name": "A word boundary",
+                "matcher": "\\b" 
+            },
+            {
+                "name": "Non-word boundary",
+                "matcher": "\\B" 
+            }
+        ]
+    },
+    {
+        "name": "Meta Sequences",
+        "items": [
+            
+        ]
+    },
+    {
+        "name": "Quantifiers",
+        "items": [
+            {
+                "name": "Zero or one of a",
+                "matcher": "a?" 
+            },
+            {
+                "name": "Zero or more of a",
+                "matcher": "a*" 
+            },
+            {
+                "name": "One or more of a",
+                "matcher": "a+" 
+            },
+            {
+                "name": "Exactly 3 of a",
+                "matcher": "a{3}" 
+            },
+            {
+                "name": "3 or more of a",
+                "matcher": "a{3,}" 
+            },
+            {
+                "name": "Between 3 and 6 of a",
+                "matcher": "a{3,6}" 
+            },
+            {
+                "name": "Greedy quantifier",
+                "matcher": "a*" 
+            },
+            {
+                "name": "Lazy quantifier a*?",
+                "matcher": "^" 
+            }
+        ]
+    },
+    {
+        "name": "Group Constructs",
+        "items": [
+            
+        ]
+    },
+    {
+        "name": "Character Classes",
+        "items": [
+            
+        ]
+    },
+    {
+        "name": "Flags/Modifiers",
+        "items": [
+            
+        ]
+    },
+    {
+        "name": "Substitution",
+        "items": [
+            
+        ]
+    }
+]

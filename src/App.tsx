@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import TextAreaHighlight from './components/TextareaHighlight';
 import MatchInfo from './components/MatchInfo';
+import QuickReference from './components/QuickReference';
 
 interface IState {
   text: string;
@@ -65,8 +66,12 @@ class App extends Component<{}, IState> {
           <input type="text" value={regexString} onChange={this.onRegexChange} />
         </div>
 
-        <div className="form-group">
+        <div className="form-group" style={{ marginBottom: 25 }}>
           <MatchInfo text={text} regex={regex} />
+        </div>
+
+        <div className="form-group">
+          <QuickReference />
         </div>
       </div>
     );

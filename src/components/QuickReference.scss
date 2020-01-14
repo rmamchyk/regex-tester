@@ -1,0 +1,120 @@
+.quick-reference {
+    background-color: #fdfdfd;
+    box-shadow: 0 0 4px lightgray;
+
+    h6 {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        color: #344f71;
+        margin: 0;
+        padding: 10px 10px 5px;
+        border-bottom: 1px solid rgba(58,58,58,.1);
+    }
+
+    .container {
+        height: 250px;
+        display: flex;
+        padding: 5px 0;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 13.2px;
+        }
+        
+        .sidebar {
+            border-right: 1px solid rgba(58,58,58,.1);
+            min-width: 185px;
+        }
+
+        .groups {
+            overflow-y: auto;
+            height: 100%;
+            max-height: 100%;
+            padding-left: 10px;
+            padding-right: 5px;
+        }
+
+        .group {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 3px;
+            color: #4e4e4e;
+            cursor: pointer;
+
+            &:hover {
+                background: #e1e1e1;
+                color: #525252;
+            }
+
+            &:active {
+                background: #636363;
+                color: #e4e4e4;
+            }
+
+            &.selected {
+                font-weight: 700;
+            }
+
+            &__icon {
+                margin-right: 8px;
+
+                &::before {
+                    content: "\f1c0";
+                }
+            }
+
+            &__title {
+                line-height: 1.1;
+                white-space: nowrap;
+            }
+        }
+
+        .content {
+            flex: 2;
+
+            .items {
+                overflow-y: auto;
+                height: 100%;
+                max-height: 100%;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .item {
+                display: flex;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 3px;
+                color: #4e4e4e;
+                cursor: pointer;
+    
+                &:hover {
+                    background: #e1e1e1;
+                    color: #525252;
+                }
+
+                &:active {
+                    background: #636363;
+                    color: #e4e4e4;
+                }
+
+                &__title {
+                    line-height: 1.1;
+                    white-space: nowrap;
+                }
+
+                &__matcher {
+                    font-size: 13.5px;
+                    margin-left: auto;
+                    color: #417751;
+                    line-height: 1;
+                    letter-spacing: .5px;
+                }
+            }
+        }
+    }
+}
