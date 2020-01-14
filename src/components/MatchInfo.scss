@@ -1,0 +1,75 @@
+.match-info {
+    background-color: #fdfdfd;
+    box-shadow: 0 0 4px lightgray;
+    padding: 5px 10px 15px;
+
+    h6 {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        color: #344f71;
+        margin: 0;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(58,58,58,.1);
+    }
+
+    .match-items {
+        height: 260px;
+        overflow-y: auto;
+
+        .match-item {
+            &:not(:last-child) {
+                border-bottom: 1px solid #f1f1f1;
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+            }
+
+            td, th {
+                font-size: 13.8px;
+                white-space: nowrap;
+                font-weight: normal;
+                padding: 3px 0;
+            }
+
+            th {
+                color: #4e7bb3;
+                padding-bottom: 5px;
+                text-align: left;
+            }
+
+            .match-type {
+                padding: 2px 3px;
+                letter-spacing: .2px;
+                background-color: rgb(198, 233, 157);
+
+                &.full {
+                    background-color: rgb(198, 227, 255);
+                }
+            }
+
+            .index-range {
+                color: #8e8e8e;
+                padding: 3px 10px;
+            }
+
+            .match-string {
+                background: rgba(0,0,0,.03);
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                word-break: break-all;
+                overflow-wrap: break-word;
+                padding: 6px 10px;
+                border-radius: 3px;
+                width: 100%;
+            }
+        }
+    }
+
+    .info-message {
+        color: #a5a5a5;
+        font-size: 13.6px;
+        margin: 12px 0;
+    }
+
+
+}

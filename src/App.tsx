@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import TextAreaHighlight from './components/TextareaHighlight';
+import MatchInfo from './components/MatchInfo';
 
 interface IState {
   text: string;
@@ -12,8 +13,8 @@ class App extends Component<{}, IState> {
     super(props);
 
     this.state = {
-      text: '',
-      regexString: ''
+      text: 'This is foo and bar',
+      regexString: '(foo)|bar'
     }
   }
 
@@ -57,9 +58,13 @@ class App extends Component<{}, IState> {
           />
         </div>
   
-        <div className="form-group">
+        <div className="form-group" style={{ marginBottom: 25 }}>
           <label>Regular expression</label>
           <input type="text" value={regexString} onChange={this.onRegexChange} />
+        </div>
+
+        <div className="form-group">
+          <MatchInfo text={text} regex={regex} />
         </div>
       </div>
     );
