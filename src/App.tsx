@@ -4,7 +4,7 @@ import TextAreaHighlight from './components/TextareaHighlight';
 
 interface IState {
   text: string;
-  regex: string;
+  regexString: string;
 }
 
 class App extends Component<{}, IState> {
@@ -13,61 +13,53 @@ class App extends Component<{}, IState> {
 
     this.state = {
       text: '',
-      regex: ''
+      regexString: ''
     }
   }
 
-  onTextChange = (text: string) => {
-    this.setState({ text })
+  onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setState({ text: e.target.value })
   }
 
   onRegexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ regex: e.target.value });
+    this.setState({ regexString: e.target.value });
   }
 
-  createRegex = (regexString: string): [boolean, RegExp?] => {
+  createRegex = (regexString: string): RegExp | undefined => {
     try {
       let regex: RegExp;
-      if (regexString.charAt(0) === '/') {
-        let parts = regexString.split('/');
-        parts.shift();
-        
-        var flags = parts.pop();
-        regexString = parts.join('/');
-        console.log(regexString)
+      const regexMatch = regexString.match(/^\s*\/(.+)\/(g?m?i?y?u?s?)\s*$/);
+      if (regexMatch) {
+        regexString = regexMatch[1];
+        var flags = regexMatch[2];
         regex = new RegExp(regexString, flags);
       } else {
-        console.log(regexString)
         regex = new RegExp(regexString, 'g');
       }
-      return [true, regex];
+      return regex;
     } catch (error) {
       console.log('Regex invalid')
-      return [false, undefined];
     }
   }
 
   render() {
-    const { text, regex } = this.state;
-    const [isValid, highlight] = this.createRegex(regex);
+    const { text, regexString } = this.state;
+    const regex = this.createRegex(regexString);
 
     return (
       <div className="container">
         <div className="form-group">
-          <div className="label-with-error">
-            <label>Test string</label>
-            {!isValid && <span>The regular expression is invalid</span>}
-          </div>
+          <label>Test string</label>
           <TextAreaHighlight
             value={text}
-            highlight={highlight}
+            highlight={regex}
             onChange={this.onTextChange}
           />
         </div>
   
         <div className="form-group">
           <label>Regular expression</label>
-          <input type="text" value={regex} onChange={this.onRegexChange} />
+          <input type="text" value={regexString} onChange={this.onRegexChange} />
         </div>
       </div>
     );

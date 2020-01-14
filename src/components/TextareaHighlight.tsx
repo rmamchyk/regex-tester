@@ -4,7 +4,7 @@ import './TextareaHighlight.scss';
 interface IProps {
     value: string;
     highlight?: RegExp;
-    onChange: (value: string) => void;
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 class TextAreaHighlight extends Component<IProps> {
@@ -12,7 +12,7 @@ class TextAreaHighlight extends Component<IProps> {
     private textareaRef = React.createRef<HTMLTextAreaElement>();
 
     onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        this.props.onChange(e.target.value);
+        this.props.onChange(e);
     }
 
     onScroll = (event: any) => {
