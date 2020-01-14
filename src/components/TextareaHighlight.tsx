@@ -22,11 +22,10 @@ class TextAreaHighlight extends Component<IProps> {
         }
     }
 
-    applyHighlights(text: string, regex: RegExp) {
-        text = text
+    private applyHighlights(text: string, regex: RegExp) {
+        return text
             .replace(/\n$/g, '\n\n')
             .replace(regex, '<mark>$&</mark>');
-        return text;
     }
 
     render() {

@@ -25,7 +25,7 @@ class App extends Component<{}, IState> {
     this.setState({ regexString: e.target.value });
   }
 
-  createRegex = (regexString: string): RegExp | undefined => {
+  private createRegex = (regexString: string): RegExp | undefined => {
     try {
       let regex: RegExp;
       const regexMatch = regexString.match(/^\s*\/(.+)\/(g?m?i?y?u?s?)\s*$/);
