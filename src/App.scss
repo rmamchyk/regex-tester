@@ -1,0 +1,49 @@
+.container {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+
+    label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        color: #344f71;
+        margin-bottom: 2px;
+    }
+
+    .label-with-error {
+        margin-bottom: 2px;
+        display: flex;
+        justify-content: space-between;
+
+        label {
+            margin: 0;
+        }
+
+        span {
+            text-transform: uppercase;
+            color: #cc0033;
+        }
+    }
+
+    input[type=text] {
+        width: 100%;
+        font: 14px 'Open Sans', sans-serif;
+        padding: 7px 10px;
+        border: 1px solid lightgray;
+        border-radius: 0;
+        letter-spacing: 1px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    input[type=text], textarea {
+        color: #444;
+    }
+}
