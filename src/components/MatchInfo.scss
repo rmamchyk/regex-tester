@@ -14,7 +14,7 @@
     }
 
     .match-items {
-        height: 260px;
+        height: 250px;
         overflow-y: auto;
 
         .match-item {
@@ -65,10 +65,17 @@
         }
     }
 
-    .info-message {
-        color: #a5a5a5;
+    .message {
         font-size: 13.6px;
         margin: 12px 0;
+
+        &.info {
+            color: #a5a5a5;
+        }
+
+        &.warning {
+            color: #800f0f;
+        }
     }
 
 

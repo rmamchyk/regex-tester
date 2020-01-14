@@ -55,9 +55,13 @@ class MatchInfo extends Component<IProps> {
             <div className="match-info">
                 <h6>Match information</h6>
                 <div className="match-items">
-                    {missingData && <p className="info-message">Detailed match information will be displayed here automatically</p>}
+                    {missingData && <p className="message info">Detailed match information will be displayed here automatically</p>}
 
-                    {matchResults.map((matchResult, index) => (
+                    {!missingData && !matchResults.length &&
+                        <p className="message warning">Your regular expression does not match the subject string</p>
+                    }
+
+                    {!missingData && matchResults.map((matchResult, index) => (
                         <div className="match-item" key={index}>
                             <table>
                                 <thead>

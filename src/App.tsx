@@ -27,9 +27,10 @@ class App extends Component<{}, IState> {
   }
 
   private createRegex = (regexString: string): RegExp | undefined => {
+    if (!regexString) return;
     try {
       let regex: RegExp;
-      const regexMatch = regexString.match(/^\s*\/(.+)\/(g?m?i?y?u?s?)\s*$/);
+      const regexMatch = regexString.match(/^\s*\/(.*)\/([gmiyus]*)\s*$/);
       if (regexMatch) {
         regexString = regexMatch[1];
         var flags = regexMatch[2];
@@ -40,6 +41,7 @@ class App extends Component<{}, IState> {
       return regex;
     } catch (error) {
       console.log('Regex invalid')
+      return;
     }
   }
 
