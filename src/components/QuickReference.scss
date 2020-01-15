@@ -7,6 +7,7 @@
         align-items: center;
         padding: 10px 10px 5px;
         border-bottom: 1px solid rgba(58,58,58,.1);
+        margin-bottom: 3px;
 
         .material-icons {
             font-size: 18px;
@@ -108,6 +109,25 @@
             min-width: 185px;
         }
 
+        .search {
+            padding: 5px 6px;
+            border: 1px solid #bdbdbd;
+            border-radius: 3px;
+            font-size: 13.2px;
+            line-height: 1.3;
+            margin-bottom: 5px;
+            letter-spacing: .2px;
+
+            &::placeholder {
+                color: lightgray;
+            }
+        }
+
+        .no-data {
+            padding: 5px 10px;
+            color: #bdbdbd;
+        }
+
         .groups {
             overflow-y: auto;
             height: 100%;
@@ -119,7 +139,7 @@
         .group {
             display: flex;
             align-items: center;
-            padding: 6px 10px;
+            padding: 6px 5px 6px 10px;
             border-radius: 3px;
             color: #4e4e4e;
             cursor: pointer;
@@ -132,6 +152,10 @@
             &:active {
                 background: #636363;
                 color: #e4e4e4;
+
+                .material-icons {
+                    color: #e4e4e4;
+                }
             }
 
             &.selected {
@@ -149,6 +173,16 @@
             &__title {
                 line-height: 1.1;
                 white-space: nowrap;
+                flex: 1;
+            }
+
+            .material-icons {
+                font-size: 16px;
+                font-weight: 700;
+                color: #417751;
+                line-height: 1;
+                margin-bottom: -3px;
+                padding-left: 3px;
             }
         }
 
@@ -179,6 +213,10 @@
                 &:active {
                     background: #636363;
                     color: #e4e4e4;
+
+                    .item__matcher {
+                        color: #e4e4e4;
+                    }
                 }
 
                 &__title {

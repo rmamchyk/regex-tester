@@ -6,6 +6,8 @@ import MaterialIcon from 'material-icons-react';
 interface IState {
     selectedGroup: IReferenceGroup | null;
     selectedItem: IReferenceItem | null;
+    searchTerm: string;
+    searchResults: IReferenceGroup[];
 }
 
 interface IReferenceGroup {
@@ -28,7 +30,9 @@ class QuickReference extends Component<{}, IState> {
 
         this.state = {
             selectedGroup: this.data.find(group => group.name === 'Common Tokens') || null,
-            selectedItem: null
+            selectedItem: null,
+            searchTerm: '',
+            searchResults: []
         }
 
         // add 'All Tokens' group
@@ -77,10 +81,45 @@ class QuickReference extends Component<{}, IState> {
           console.log('Regex invalid')
           return;
         }
-      }
+    }
+
+    onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const term = e.target.value.toLowerCase();
+        const searchResults: IReferenceGroup[] = [];
+        if (term) {
+            const searchItems = this.data.filter(group => group.name !== 'All Tokens')
+                .flatMap(group => group.items.filter(item => 
+                    item.name.toLowerCase().includes(term) || item.matcher.toLowerCase().includes(term)));
+            
+            if (searchItems.length) {
+                searchResults.push({
+                    name: 'Full Search Result',
+                    items: searchItems
+                });
+                this.data.forEach(group => {
+                    if (group.name !== 'All Tokens' && group.items.find(item => 
+                        item.name.toLowerCase().includes(term) || item.matcher.toLowerCase().includes(term))) {
+                            searchResults.push({
+                                ...group,
+                                items: group.items.filter(item => 
+                                    item.name.toLowerCase().includes(term) || item.matcher.toLowerCase().includes(term))
+                            })
+                    }
+                })
+            }
+        }
+
+        this.setState({
+            searchTerm: e.target.value,
+            searchResults,
+            selectedGroup: term ?
+                searchResults[0] || null :
+                this.data.find(group => group.name === 'Common Tokens') || null
+        });
+    }
 
     render() {
-        const { selectedGroup, selectedItem } = this.state;
+        const { selectedGroup, selectedItem, searchTerm, searchResults } = this.state;
 
         return (
             <div className="quick-reference">
@@ -122,26 +161,32 @@ class QuickReference extends Component<{}, IState> {
                         </div>
                         <div className="container">
                             <div className="sidebar">
+                                
                                 <ul className="groups">
-                                    {this.data.map((group, idx) => (
+                                    <li>
+                                        <input className="search" type="text" value={searchTerm} onChange={this.onSearchChange} placeholder="Search reference"/>
+                                    </li>
+                                    {(searchTerm ? searchResults : this.data).map((group, idx) => (
                                         <li className={`group ${group === selectedGroup ? 'selected' : ''}`} key={idx} onClick={() => this.onSelectGroup(group)}>
                                             {/* <div className="group-item__icon"></div> */}
-                                            <div className="group__title">{group.name}</div> 
+                                            <div className="group__title">{group.name}</div>
+                                            {group === selectedGroup && <MaterialIcon icon="check" onClick={this.onCloseItem} />}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                             <div className="content">
-                                {selectedGroup &&
-                                    <ul className="items">
-                                        {selectedGroup.items.map((item, idx) => (
-                                            <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
-                                                <div className="item__title">{item.name}</div>
-                                                <div className="item__matcher">{item.matcher}</div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                }
+                                <ul className="items">
+                                    {searchTerm && !searchResults.length && 
+                                        <li className="no-data">No data found</li>
+                                    }
+                                    {selectedGroup && selectedGroup.items.map((item, idx) => (
+                                        <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
+                                            <div className="item__title">{item.name}</div>
+                                            <div className="item__matcher">{item.matcher}</div>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </>
