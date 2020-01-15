@@ -92,7 +92,7 @@
             },
             {
                 "name": "End of string",
-                "matcher": "&" 
+                "matcher": "$" 
             },
             {
                 "name": "A word boundary",
@@ -109,19 +109,23 @@
         "items": [
             {
                 "name": "Newline",
-                "matcher": "\\n" 
+                "matcher": "\\n",
+                "description": "Matches a newline character"
             },
             {
                 "name": "Carriage return",
-                "matcher": "\\r" 
+                "matcher": "\\r",
+                "description": "Matches a carriage return character, unicode character 2185."
             },
             {
                 "name": "Tab",
-                "matcher": "\\t" 
+                "matcher": "\\t",
+                "description": "Matches a tab character. Historically, tab stops happen every 8 characters."
             },
             {
                 "name": "Null character",
-                "matcher": "\\0" 
+                "matcher": "\\0",
+                "description": "Matches a null character, most often visually represented in unicode using U+2400."
             }
         ]
     },
@@ -130,19 +134,39 @@
         "items": [
             {
                 "name": "Start of string",
-                "matcher": "^" 
+                "matcher": "^",
+                "description": "Matches the start of a string without consuming any characters. If multiline mode is used, this will also match immediately after a newline character.",
+                "example": {
+                    "pattern": "/^\\w+/",
+                    "text": "start of string"
+                }
             },
             {
                 "name": "End of string",
-                "matcher": "&" 
+                "matcher": "$",
+                "description": "Matches the end of a string without consuming any characters. If multiline mode is used, this will also match immediately before a newline character.",
+                "example": {
+                    "pattern": "/\\w+$/",
+                    "text": "end of string"
+                }
             },
             {
                 "name": "A word boundary",
-                "matcher": "\\b" 
+                "matcher": "\\b",
+                "description": "Matches, without consuming any characters, immediately between a character matched by \\w and a character not matched by \\w (in either order). It cannot be used to separate non words from words.",
+                "example": {
+                    "pattern": "/d\\b/g",
+                    "text": "word boundaries are odd"
+                }
             },
             {
                 "name": "Non-word boundary",
-                "matcher": "\\B" 
+                "matcher": "\\B",
+                "description": "Matches, without consuming any characters, at the position between two characters matched by \\w.",
+                "example": {
+                    "pattern": "/r\\B/g",
+                    "text": "regex is really cool"
+                }
             }
         ]
     },
@@ -151,67 +175,143 @@
         "items": [
             {
                 "name": "Any single character",
-                "matcher": "."
+                "matcher": ".",
+                "description": "Matches any character other than newline (or including newline with the /s flag)",
+                "example": {
+                    "pattern": "/.+/",
+                    "text": "a b c"
+                }
             },
             {
                 "name": "Any whitespace character",
-                "matcher": "\\s"
+                "matcher": "\\s",
+                "description": "Matches any space, tab or newline character.",
+                "example": {
+                    "pattern": "/\\s/g",
+                    "text": "any whitespace character"
+                }
             },
             {
                 "name": "Any non-whitespace character",
-                "matcher": "\\S"
+                "matcher": "\\S",
+                "description": "Matches anything other than a space, tab or newline.",
+                "example": {
+                    "pattern": "/\\S+/g",
+                    "text": "any non-whitespace"
+                }
             },
             {
                 "name": "Any digit",
-                "matcher": "\\d"
+                "matcher": "\\d",
+                "description": "Matches any decimal digit. Equivalent to [0-9].",
+                "example": {
+                    "pattern": "/\\d/g",
+                    "text": "one: 1, two: 2"
+                }
             },
             {
                 "name": "Any non-digit",
-                "matcher": "\\D"
+                "matcher": "\\D",
+                "description": "Matches anything other than a decimal digit.",
+                "example": {
+                    "pattern": "/\\D+/g",
+                    "text": "one: 1, two: 2"
+                }
             },
             {
                 "name": "Any word character",
-                "matcher": "\\w"
+                "matcher": "\\w",
+                "description": "Matches any letter, digit or underscore. Equivalent to [a-zA-Z0-9_].",
+                "example": {
+                    "pattern": "/\\w+/g",
+                    "text": "any word character"
+                }
             },
             {
                 "name": "Any non-word character",
-                "matcher": "\\W"
+                "matcher": "\\W",
+                "description": "Matches anything other than a letter, digit or underscore.",
+                "example": {
+                    "pattern": "/\\W+/g",
+                    "text": "not.a@word%character"
+                }
             },
             {
                 "name": "Vertical whitespace character",
-                "matcher": "\\v"
+                "matcher": "\\v",
+                "description": "Matches newlines and vertical tabs. Works with Unicode. Vertical tabs can be inserted in some word processors using CMD/CTRL+ENTER.",
+                "example": {
+                    "pattern": "/(\\v)/",
+                    "text": "line one<br/><br/>line two"
+                }
             },
             {
                 "name": "Match nth subpattern",
-                "matcher": "\\n"
+                "matcher": "\\n",
+                "description": "Usually referred to as a `backreference`, this will match a repeat of the text captured in a previous set of parentheses. To reduce ambiguity one may also use `\\gn`, or `\\g{n}` where n is a digit.",
+                "example": {
+                    "pattern": "/(.)\\1/",
+                    "text": "Repeated letters"
+                }
             },
             {
                 "name": "Match subpattern `name`",
-                "matcher": "\\k<name>"
+                "matcher": "\\k<name>",
+                "description": "Matches the text matched by a previously named capture group. Please note this feature is experimental in JavaScript and might not be supported by your browser.",
+                "example": {
+                    "pattern": "/(?<first>a+) and again (\\k<first>)/",
+                    "text": "aaaa and again aaaa"
+                }
             },
             {
                 "name": "Hex character YYYY",
-                "matcher": "\\uYYYY"
+                "matcher": "\\uYYYY",
+                "description": "Matches the unicode character with the given hex value. <a target=\"_blank\" href=\"http://unicode-table.com/en/\">Unicode Character Table</a>",
+                "example": {
+                    "pattern": "/\\u0025/",
+                    "text": "%"
+                }
             },
             {
                 "name": "Hex character YY",
-                "matcher": "\\xYY"
+                "matcher": "\\xYY",
+                "description": "Matches the 8-bit character with the given hex value. <a target=\"_blank\" href=\"http://unicode-table.com/en/\">Unicode Character Table</a>",
+                "example": {
+                    "pattern": "/\\x20/g",
+                    "text": "match all spaces"
+                }
             },
             {
                 "name": "Octal character ddd",
-                "matcher": "\\ddd"
+                "matcher": "\\ddd",
+                "description": "Matches the 8-bit character with the given octal value. <a target=\"_blank\" href=\"http://www.utf8-chartable.de/unicode-utf8-table.pl?utf8=oct\">Octal Character Table</a>",
+                "example": {
+                    "pattern": "/\\045/",
+                    "text": "%"
+                }
             },
             {
                 "name": "Control character Y",
-                "matcher": "\\cY"
+                "matcher": "\\cY",
+                "description": "Matches ASCII characters typically associated with Control+A through Control+Z: \\x01 through \\x1A. <a target=\"_blank\" href=\"https://www.cs.tut.fi/~jkorpela/chars/c0.html\">ASCII control characters</a>",
+                "example": {
+                    "pattern": "/cI/",
+                    "text": "horizontal<mark>&nbsp;&nbsp;&nbsp;&nbsp;</mark>tab"
+                }
             },
             {
                 "name": "Backspace character",
-                "matcher": "[\\b]"
+                "matcher": "[\\b]",
+                "description": "Matches the backspace control character."
             },
             {
                 "name": "Makes any character literal",
-                "matcher": "\\"
+                "matcher": "\\",
+                "description": "This may be used to match the literal value of any metacharacter, or the / delimiter.",
+                "example": {
+                    "pattern": "/\\\\w/",
+                    "text": "match \\w literally"
+                }
             }
         ]
     },
