@@ -66,12 +66,15 @@ class App extends Component<{}, IState> {
           <input type="text" value={regexString} onChange={this.onRegexChange} />
         </div>
 
-        <div className="form-group" style={{ marginBottom: 25 }}>
-          <MatchInfo text={text} regex={regex} />
-        </div>
+        <div className="more" style={{ marginBottom: 25 }}>
+          <div className="more__item">
+            <MatchInfo text={text} regex={regex} />
+          </div>
+          <div className="more__divider"></div>
+          <div className="more__item">
+            <QuickReference />
+          </div>
 
-        <div className="form-group">
-          <QuickReference />
         </div>
       </div>
     );

@@ -198,9 +198,9 @@ class QuickReference extends Component<{}, IState> {
                             </div>
                             <div className="content">
                                 <ul className="items">
-                                    {/* {searchTerm && !searchResults.length && 
+                                    {searchTerm && !searchResults.length && 
                                         <li className="no-data">No data found</li>
-                                    } */}
+                                    }
                                     {selectedGroup && selectedGroup.items.map((item, idx) => (
                                         <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
                                             <div className="item__title">{item.name}</div>
