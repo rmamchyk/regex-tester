@@ -6,6 +6,14 @@ import {
     Tails, Database, Flag, Asterisk, Cut,
     Radio, Anchor, Star, Meta
 } from '../images';
+import { createRegex } from '../utils/regexHelper';
+
+// add 'All Tokens' group
+referenceData.unshift({
+    name: 'All Tokens',
+    icon: 'database',
+    items: referenceData.filter(group => group.name !== 'Common Tokens').flatMap(group => group.items)
+})
 
 interface IState {
     selectedGroup: IReferenceGroup | null;
@@ -39,13 +47,6 @@ class QuickReference extends Component<{}, IState> {
             searchTerm: '',
             searchResults: []
         }
-
-        // add 'All Tokens' group
-        this.data.unshift({
-            name: 'All Tokens',
-            icon: 'database',
-            items: this.data.filter(group => group.name !== 'Common Tokens').flatMap(group => group.items)
-        })
     }
 
     onSelectGroup = (group: IReferenceGroup) => {
@@ -76,32 +77,13 @@ class QuickReference extends Component<{}, IState> {
     }
 
     private applyHighlights(text: string, regexString: string) {
-        const regex = this.createRegex(regexString);
-        if (regex) {
+        const [isValid, regex] = createRegex(regexString);
+        if (isValid && regex) {
             return text
                 .replace(/\n$/g, '\n\n')
-                .replace(regex, '<mark>$&</mark>');
+                .replace(regex!, '<mark>$&</mark>');
         }
         return text;
-    }
-
-    private createRegex = (regexString: string): RegExp | undefined => {
-        if (!regexString) return;
-        try {
-          let regex: RegExp;
-          const regexMatch = regexString.match(/^\s*\/(.*)\/([gmiyus]*)\s*$/);
-          if (regexMatch) {
-            regexString = regexMatch[1];
-            var flags = regexMatch[2];
-            regex = new RegExp(regexString, flags);
-          } else {
-            regex = new RegExp(regexString, 'g');
-          }
-          return regex;
-        } catch (error) {
-          console.log('Regex invalid')
-          return;
-        }
     }
 
     onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

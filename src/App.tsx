@@ -3,10 +3,13 @@ import './App.scss';
 import TextAreaHighlight from './components/TextareaHighlight';
 import MatchInfo from './components/MatchInfo';
 import QuickReference from './components/QuickReference';
+import { createRegex } from './utils/regexHelper';
 
 interface IState {
   text: string;
   regexString: string;
+  showMatchInfo: boolean;
+  showQuickReference: boolean;
 }
 
 class App extends Component<{}, IState> {
@@ -15,7 +18,9 @@ class App extends Component<{}, IState> {
 
     this.state = {
       text: 'This is foo and bar',
-      regexString: '(foo)|bar'
+      regexString: '(foo)|bar',
+      showMatchInfo: true,
+      showQuickReference: false
     }
   }
 
@@ -27,28 +32,17 @@ class App extends Component<{}, IState> {
     this.setState({ regexString: e.target.value });
   }
 
-  private createRegex = (regexString: string): RegExp | undefined => {
-    if (!regexString) return;
-    try {
-      let regex: RegExp;
-      const regexMatch = regexString.match(/^\s*\/(.*)\/([gmiyus]*)\s*$/);
-      if (regexMatch) {
-        regexString = regexMatch[1];
-        var flags = regexMatch[2];
-        regex = new RegExp(regexString, flags);
-      } else {
-        regex = new RegExp(regexString, 'g');
-      }
-      return regex;
-    } catch (error) {
-      console.log('Regex invalid')
-      return;
-    }
+  onToggleMatchInfo = () => {
+    this.setState(state => ({ showMatchInfo: !state.showMatchInfo }))
+  }
+
+  onToggleQuickReference = () => {
+    this.setState(state => ({ showQuickReference: !state.showQuickReference }))
   }
 
   render() {
-    const { text, regexString } = this.state;
-    const regex = this.createRegex(regexString);
+    const { text, regexString, showMatchInfo, showQuickReference } = this.state;
+    const [isValid, regex] = createRegex(regexString);
 
     return (
       <div className="container">
@@ -56,6 +50,7 @@ class App extends Component<{}, IState> {
           <label>Test string</label>
           <TextAreaHighlight
             value={text}
+            placeholder="Enter your test string here"
             highlight={regex}
             onChange={this.onTextChange}
           />
@@ -63,17 +58,27 @@ class App extends Component<{}, IState> {
   
         <div className="form-group" style={{ marginBottom: 25 }}>
           <label>Regular expression</label>
-          <input type="text" value={regexString} onChange={this.onRegexChange} />
+          <input type="text" value={regexString} onChange={this.onRegexChange} placeholder="Enter your regular expression here" />
+          <div className="regex-options">
+            <div className="regex-options__item" onClick={this.onToggleMatchInfo}>{showMatchInfo ? 'Hide' : 'Show'} Match Information</div>
+            <div className="regex-options__item" onClick={this.onToggleQuickReference}>{showQuickReference ? 'Hide' : 'Show'} Quick Reference</div>
+          </div>
         </div>
 
-        <div className="more" style={{ marginBottom: 25 }}>
-          <div className="more__item">
-            <MatchInfo text={text} regex={regex} />
-          </div>
-          <div className="more__divider"></div>
-          <div className="more__item">
-            <QuickReference />
-          </div>
+        <div className="regex-more" style={{ marginBottom: 25 }}>
+          {showMatchInfo &&
+            <>
+              <div className="regex-more__item">
+                <MatchInfo text={text} regex={regex} isRegexValid={isValid} />
+              </div>
+              <div className="regex-more__divider"></div>
+            </>
+          }
+          {showQuickReference &&
+            <div className="regex-more__item">
+              <QuickReference />
+            </div>
+          }
         </div>
       </div>
     );

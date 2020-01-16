@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.more {
+.regex-more {
     display: flex;
     height: 320px;
 
@@ -13,6 +13,23 @@
 
     &__item {
         flex: 1;
+    }
+}
+
+.regex-options {
+    display: flex;
+    margin-top: 5px;
+    color: #344f71;
+
+    &__item {
+        font-size: 13.2px;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:first-child {
+            margin-right: 15px;
+            min-width: 152px;
+        }
     }
 }
 
@@ -58,5 +75,12 @@
 
     input[type=text], textarea {
         color: #444;
+    }
+
+    input, textarea {
+        &::placeholder {
+            color: lightgray;
+            font-size: .95em;
+        }
     }
 }

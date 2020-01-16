@@ -4,6 +4,7 @@ import './TextareaHighlight.scss';
 interface IProps {
     value: string;
     highlight?: RegExp;
+    placeholder: string;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -29,7 +30,7 @@ class TextAreaHighlight extends Component<IProps> {
     }
 
     render() {
-        const { value, highlight } = this.props;
+        const { value, highlight, placeholder } = this.props;
         const highlightedValue = highlight ? this.applyHighlights(value, highlight) : '';
 
         return (
@@ -48,6 +49,7 @@ class TextAreaHighlight extends Component<IProps> {
                         spellCheck={false}
                         onChange={this.onChange}
                         onScroll={this.onScroll}
+                        placeholder={placeholder}
                     ></textarea>
                 </div>
             </div>
