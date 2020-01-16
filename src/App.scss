@@ -7,12 +7,12 @@
     display: flex;
     height: 320px;
 
-    &__item {
-        width: calc(50% - 5px)
+    &__divider {
+        flex: 0 0 10px;
     }
 
-    &__divider {
-        width: 10px;
+    &__item {
+        flex: 1;
     }
 }
 

@@ -182,37 +182,39 @@ class QuickReference extends Component<{}, IState> {
                             <h6>Quick reference</h6>
                         </div>
                         <div className="main">
-                            <div className="sidebar">
-                                <ul className="groups">
-                                    <li>
-                                        <input className="search" type="text" value={searchTerm} onChange={this.onSearchChange} placeholder="Search reference"/>
-                                    </li>
-                                    {(searchTerm ? searchResults : this.data).map((group, idx) => (
-                                        <li className={`group ${group === selectedGroup ? 'selected' : ''}`} key={idx} onClick={() => this.onSelectGroup(group)}>
-                                            {this.renderGroupIcon(group.icon)}
-                                            <div className="group__title">{group.name}</div>
-                                            {group === selectedGroup && <MaterialIcon icon="check" onClick={this.onCloseItem} />}
+                            <div className="main__inner">
+                                <div className="sidebar">
+                                    <ul className="groups">
+                                        <li>
+                                            <input className="search" type="text" value={searchTerm} onChange={this.onSearchChange} placeholder="Search reference"/>
                                         </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="content">
-                                <ul className="items">
-                                    {searchTerm && !searchResults.length && 
-                                        <li className="no-data">No data found</li>
-                                    }
-                                    {selectedGroup && selectedGroup.items.map((item, idx) => (
-                                        <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
-                                            <div className="item__title">{item.name}</div>
-                                            <div className="item__matcher">{item.matcher}</div>
-                                        </li>
-                                    ))}
-                                </ul>
+                                        {(searchTerm ? searchResults : this.data).map((group, idx) => (
+                                            <li className={`group ${group === selectedGroup ? 'selected' : ''}`} key={idx} onClick={() => this.onSelectGroup(group)}>
+                                                {this.renderGroupIcon(group.icon)}
+                                                <div className="group__title">{group.name}</div>
+                                                {group === selectedGroup && <MaterialIcon icon="check" onClick={this.onCloseItem} />}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="content">
+                                    <ul className="items">
+                                        {searchTerm && !searchResults.length && 
+                                            <li className="no-data">No data found</li>
+                                        }
+                                        {selectedGroup && selectedGroup.items.map((item, idx) => (
+                                            <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
+                                                <div className="item__title">{item.name}</div>
+                                                <div className="item__matcher">{item.matcher}</div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     </>
                 }
-
             </div>
         )
     }

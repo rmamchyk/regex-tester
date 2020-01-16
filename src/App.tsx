@@ -74,7 +74,6 @@ class App extends Component<{}, IState> {
           <div className="more__item">
             <QuickReference />
           </div>
-
         </div>
       </div>
     );

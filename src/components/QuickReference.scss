@@ -101,10 +101,19 @@
 
     .main {
         display: flex;
-        padding-top: 5px;
-        padding-bottom: 10px;
         flex: 1 1 auto;
         max-height: calc(100% - 32px);
+        overflow: hidden;
+        position: relative;
+
+        &__inner {
+            position: absolute;
+            display: flex;
+            top: 5px;
+            bottom: 5px;
+            right: 0;
+            left: 0;
+        }
 
         ul {
             list-style: none;
@@ -205,9 +214,8 @@
         }
 
         .content {
-            display: block;
             flex: 1 1 auto;
-            max-width: calc(100% - 190px);
+            overflow-y: auto;
 
             .items {
                 overflow-y: auto;
