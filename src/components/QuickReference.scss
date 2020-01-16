@@ -1,6 +1,7 @@
 .quick-reference {
     background-color: #fdfdfd;
     box-shadow: 0 0 4px lightgray;
+    width: 60%;
 
     .header {
         display: flex;
@@ -8,7 +9,8 @@
         padding: 10px 10px 5px;
         border-bottom: 1px solid rgba(58,58,58,.1);
         margin-bottom: 3px;
-
+        line-height: 1.2;
+ 
         .material-icons {
             font-size: 18px;
             font-weight: 600;
@@ -26,6 +28,7 @@
         padding: 0 10px;
         font-size: 13.8px;
         width: 100%;
+        overflow-y: auto;
 
         &__info {
             display: flex;
@@ -61,6 +64,7 @@
             border: 1px solid #bdbdbd;
             border-radius: 3px;
             padding: 10px;
+            margin-bottom: 10px;
 
             &--pattern {
                 margin-bottom: 14px;
@@ -92,7 +96,7 @@
         padding: 0;
     }
 
-    .container {
+    .main {
         height: 250px;
         display: flex;
         padding: 5px 0;
@@ -106,7 +110,8 @@
         
         .sidebar {
             border-right: 1px solid rgba(58,58,58,.1);
-            min-width: 185px;
+            flex: 1 0 190px;
+            max-width: 190px;
         }
 
         .search {
@@ -139,10 +144,11 @@
         .group {
             display: flex;
             align-items: center;
-            padding: 6px 5px 6px 10px;
+            padding: 0 5px 0 10px;
             border-radius: 3px;
             color: #4e4e4e;
             cursor: pointer;
+            height: 27px;
 
             &:hover {
                 background: #e1e1e1;
@@ -153,7 +159,7 @@
                 background: #636363;
                 color: #e4e4e4;
 
-                .material-icons {
+                .group__icon, .material-icons {
                     color: #e4e4e4;
                 }
             }
@@ -163,36 +169,44 @@
             }
 
             &__icon {
-                margin-right: 8px;
+                flex: 0 0 12px;
+                height: 11px;
+                width: 11px;
+                margin-right: 10px;
+                color: #636363;
 
-                &::before {
-                    content: "\f1c0";
+                &.bigger {
+                    height: 12;
+                    width: 12px;
                 }
             }
 
             &__title {
-                line-height: 1.1;
+                line-height: 1.2;
                 white-space: nowrap;
-                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex: 1 1 auto;
             }
 
             .material-icons {
+                flex: 0 0 19px;
                 font-size: 16px;
                 font-weight: 700;
                 color: #417751;
                 line-height: 1;
-                margin-bottom: -3px;
                 padding-left: 3px;
             }
         }
 
         .content {
-            flex: 2;
+            display: block;
+            flex: 1 1 auto;
+            max-width: calc(100% - 190px);
 
             .items {
                 overflow-y: auto;
                 height: 100%;
-                max-height: 100%;
                 padding-left: 5px;
                 padding-right: 5px;
             }
@@ -200,10 +214,11 @@
             .item {
                 display: flex;
                 align-items: center;
-                padding: 6px 10px;
+                padding: 0 10px;
                 border-radius: 3px;
                 color: #4e4e4e;
                 cursor: pointer;
+                height: 27px;
     
                 &:hover {
                     background: #e1e1e1;
@@ -220,16 +235,21 @@
                 }
 
                 &__title {
-                    line-height: 1.1;
+                    line-height: 1.2;
                     white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    flex: 1 1 auto;
                 }
 
                 &__matcher {
                     font-size: 13.5px;
-                    margin-left: auto;
                     color: #417751;
                     line-height: 1;
                     letter-spacing: .5px;
+                    white-space: nowrap;
+                    padding-left: 5px;
+                    font-weight: 500;
                 }
             }
         }

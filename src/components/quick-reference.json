@@ -1,111 +1,229 @@
 [
     {
         "name": "Common Tokens",
+        "icon": "star",
         "items": [
             {
                 "name": "A single character of: a, b or c",
-                "matcher": "[abc]" 
+                "matcher": "[abc]",
+                "description": "Matches either an a, b or c character",
+                "example": {
+                    "pattern": "/[abc]+/g",
+                    "text": "a bb ccc"
+                }
             },
             {
                 "name": "A character except: a, b or c",
-                "matcher": "[^abc]"
+                "matcher": "[^abc]",
+                "description": "Matches any character except for an a, b or c",
+                "example": {
+                    "pattern": "/[^abc]+/g",
+                    "text": "Anything but abc."
+                }
             },
             {
                 "name": "A character in the range: a-z",
-                "matcher": "[a-z]"
+                "matcher": "[a-z]",
+                "description": "Matches any characters between a and z, including a and z.",
+                "example": {
+                    "pattern": "/[a-z]+/g",
+                    "text": "Only a-z"
+                }
             },
             {
                 "name": "A character not in the range: a-z",
-                "matcher": "[^a-z]"
+                "matcher": "[^a-z]",
+                "description": "Matches any characters except those in the range a-z.",
+                "example": {
+                    "pattern": "/[^a-z]+/g",
+                    "text": "Anything but a-z."
+                }
             },
             {
                 "name": "A character in the range: a-z or A-Z",
-                "matcher": "[a-zA-Z]"
+                "matcher": "[a-zA-Z]",
+                "description": "Matches any characters between a-z or A-Z. You can combine as much as you please.",
+                "example": {
+                    "pattern": "/[a-zA-Z]+/g",
+                    "text": "abc123DEF"
+                }
             },
             {
                 "name": "Any single character",
-                "matcher": "."
+                "matcher": ".",
+                "description": "Matches any character other than newline (or including newline with the /s flag)",
+                "example": {
+                    "pattern": "/.+/",
+                    "text": "a b c"
+                }
             },
             {
                 "name": "Any whitespace character",
-                "matcher": "\\s"
+                "matcher": "\\s",
+                "description": "Matches any space, tab or newline character.",
+                "example": {
+                    "pattern": "/\\s/g",
+                    "text": "any whitespace character"
+                }
             },
             {
                 "name": "Any non-whitespace character",
-                "matcher": "\\S"
+                "matcher": "\\S",
+                "description": "Matches anything other than a space, tab or newline.",
+                "example": {
+                    "pattern": "/\\S+/g",
+                    "text": "any non-whitespace"
+                }
             },
             {
                 "name": "Any digit",
-                "matcher": "\\d"
+                "matcher": "\\d",
+                "description": "Matches any decimal digit. Equivalent to [0-9].",
+                "example": {
+                    "pattern": "/\\d/g",
+                    "text": "one: 1, two: 2"
+                }
             },
             {
                 "name": "Any non-digit",
-                "matcher": "\\D"
+                "matcher": "\\D",
+                "description": "Matches anything other than a decimal digit.",
+                "example": {
+                    "pattern": "/\\D+/g",
+                    "text": "one: 1, two: 2"
+                }
             },
             {
                 "name": "Any word character",
-                "matcher": "\\w"
+                "matcher": "\\w",
+                "description": "Matches any letter, digit or underscore. Equivalent to [a-zA-Z0-9_].",
+                "example": {
+                    "pattern": "/\\w+/g",
+                    "text": "any word character"
+                }
             },
             {
                 "name": "Any non-word character",
-                "matcher": "\\W"
+                "matcher": "\\W",
+                "description": "Matches anything other than a letter, digit or underscore.",
+                "example": {
+                    "pattern": "/\\W+/g",
+                    "text": "not.a@word%character"
+                }
             },
             {
                 "name": "Capture everything enclosed",
-                "matcher": "(...)"
+                "matcher": "(...)",
+                "description": "Parts of the regex enclosed in parentheses may be referred to later in the expression or extracted from the results of a successful match.",
+                "example": {
+                    "pattern": "/(he)+/g",
+                    "text": "heheh he heh"
+                }
             },
             {
                 "name": "Match either a or b",
-                "matcher": "(a|b)"
-            },
-            {
-                "name": "Match either a or b",
-                "matcher": "(a|b)"
+                "matcher": "(a|b)",
+                "description": "Matches the a or the b part of the subexpression.",
+                "example": {
+                    "pattern": "/(a|b)/g",
+                    "text": "beach"
+                }
             },
             {
                 "name": "Zero or one of a",
-                "matcher": "a?" 
+                "matcher": "a?",
+                "description": "Matches an `a` character or nothing.",
+                "example": {
+                    "pattern": "/ba?/g",
+                    "text": "ba b a"
+                }
             },
             {
                 "name": "Zero or more of a",
-                "matcher": "a*" 
+                "matcher": "a*",
+                "description": "Matches zero or more consecutive `a` characters.",
+                "example": {
+                    "pattern": "/ba*/g",
+                    "text": "a ba baa aaa ba b"
+                }
             },
             {
                 "name": "One or more of a",
-                "matcher": "a+" 
+                "matcher": "a+",
+                "description": "Matches one or more consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a+/g",
+                    "text": "a aa aaa aaaa bab baab"
+                }
             },
             {
                 "name": "Exactly 3 of a",
-                "matcher": "a{3}" 
+                "matcher": "a{3}",
+                "description": "Matches exactly 3 consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3}/g",
+                    "text": "a aa aaa aaaa"
+                }
             },
             {
                 "name": "3 or more of a",
-                "matcher": "a{3,}" 
+                "matcher": "a{3,}",
+                "description": "Matches at least 3 consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3,}/",
+                    "text": "a aa aaa aaaa aaaaaa"
+                }
             },
             {
                 "name": "Between 3 and 6 of a",
-                "matcher": "a{3,6}" 
+                "matcher": "a{3,6}",
+                "description": "Matches between 3 and 6 (inclusive) consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3,6}/",
+                    "text": "a aa aaa aaaa aaaaaaaaaa"
+                }
             },
             {
                 "name": "Start of string",
-                "matcher": "^" 
+                "matcher": "^",
+                "description": "Matches the start of a string without consuming any characters. If multiline mode is used, this will also match immediately after a newline character.",
+                "example": {
+                    "pattern": "/^\\w+/",
+                    "text": "start of string"
+                }
             },
             {
                 "name": "End of string",
-                "matcher": "$" 
+                "matcher": "$",
+                "description": "Matches the end of a string without consuming any characters. If multiline mode is used, this will also match immediately before a newline character.",
+                "example": {
+                    "pattern": "/\\w+$/",
+                    "text": "end of string"
+                }
             },
             {
                 "name": "A word boundary",
-                "matcher": "\\b" 
+                "matcher": "\\b",
+                "description": "Matches, without consuming any characters, immediately between a character matched by \\w and a character not matched by \\w (in either order). It cannot be used to separate non words from words.",
+                "example": {
+                    "pattern": "/d\\b/g",
+                    "text": "word boundaries are odd"
+                }
             },
             {
                 "name": "Non-word boundary",
-                "matcher": "\\B" 
+                "matcher": "\\B",
+                "description": "Matches, without consuming any characters, at the position between two characters matched by \\w.",
+                "example": {
+                    "pattern": "/r\\B/g",
+                    "text": "regex is really cool"
+                }
             }
         ]
     },
     {
         "name": "General Tokens",
+        "icon": "radio",
         "items": [
             {
                 "name": "Newline",
@@ -131,6 +249,7 @@
     },
     {
         "name": "Anchors",
+        "icon": "anchor",
         "items": [
             {
                 "name": "Start of string",
@@ -172,6 +291,7 @@
     },
     {
         "name": "Meta Sequences",
+        "icon": "meta",
         "items": [
             {
                 "name": "Any single character",
@@ -317,182 +437,315 @@
     },
     {
         "name": "Quantifiers",
+        "icon": "asterisk",
         "items": [
             {
                 "name": "Zero or one of a",
-                "matcher": "a?" 
+                "matcher": "a?",
+                "description": "Matches an `a` character or nothing.",
+                "example": {
+                    "pattern": "/ba?/g",
+                    "text": "ba b a"
+                }
             },
             {
                 "name": "Zero or more of a",
-                "matcher": "a*" 
+                "matcher": "a*",
+                "description": "Matches zero or more consecutive `a` characters.",
+                "example": {
+                    "pattern": "/ba*/g",
+                    "text": "a ba baa aaa ba b"
+                }
             },
             {
                 "name": "One or more of a",
-                "matcher": "a+" 
+                "matcher": "a+",
+                "description": "Matches one or more consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a+/g",
+                    "text": "a aa aaa aaaa bab baab"
+                }
             },
             {
                 "name": "Exactly 3 of a",
-                "matcher": "a{3}" 
+                "matcher": "a{3}",
+                "description": "Matches exactly 3 consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3}/g",
+                    "text": "a aa aaa aaaa"
+                }
             },
             {
                 "name": "3 or more of a",
-                "matcher": "a{3,}" 
+                "matcher": "a{3,}",
+                "description": "Matches at least 3 consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3,}/",
+                    "text": "a aa aaa aaaa aaaaaa"
+                }
             },
             {
                 "name": "Between 3 and 6 of a",
-                "matcher": "a{3,6}" 
+                "matcher": "a{3,6}",
+                "description": "Matches between 3 and 6 (inclusive) consecutive `a` characters.",
+                "example": {
+                    "pattern": "/a{3,6}/",
+                    "text": "a aa aaa aaaa aaaaaaaaaa"
+                }
             },
             {
                 "name": "Greedy quantifier",
-                "matcher": "a*" 
+                "matcher": "a*",
+                "description": "Matches as many characters as possible.",
+                "example": {
+                    "pattern": "/a.*a/",
+                    "text": "greedy can be dangerous at times"
+                }
             },
             {
                 "name": "Lazy quantifier",
-                "matcher": "a*?" 
+                "matcher": "a*?",
+                "description": "Matches as few characters as possible.",
+                "example": {
+                    "pattern": "/r\\w*?/",
+                    "text": "r re regex"
+                }
             }
         ]
     },
     {
         "name": "Group Constructs",
+        "icon": "radio",
         "items": [
             {
                 "name": "Capture everything enclosed",
-                "matcher": "(...)"
+                "matcher": "(...)",
+                "description": "Parts of the regex enclosed in parentheses may be referred to later in the expression or extracted from the results of a successful match.",
+                "example": {
+                    "pattern": "/(he)+/g",
+                    "text": "heheh he heh"
+                }
             },
             {
                 "name": "Match either a or b",
-                "matcher": "(a|b)"
+                "matcher": "(a|b)",
+                "description": "Matches the a or the b part of the subexpression.",
+                "example": {
+                    "pattern": "/(a|b)/g",
+                    "text": "beach"
+                }
             }, 
             {
                 "name": "Match everything enclosed",
-                "matcher": "(?:...)"
+                "matcher": "(?:...)",
+                "description": "This construct is similar to (...), but won't create a capture group.",
+                "example": {
+                    "pattern": "/(?:he)+/g",
+                    "text": "heheh he heh"
+                }
             }, 
             {
                 "name": "Named Capturing Group",
-                "matcher": "(?<name>...)"
+                "matcher": "(?<name>...)",
+                "description": "This capturing group can be referred to using the given name instead of a number.<br/>Please note this feature is experimental in JavaScript and might not be supported by your browser.",
+                "example": {
+                    "pattern": "/(?<name>Sally)/",
+                    "text": "Call me Sally."
+                }
             }, 
             {
                 "name": "Positive Lookahead",
-                "matcher": "(?=...)"
+                "matcher": "(?=...)",
+                "description": "Asserts that the given subpattern can be matched here, without consuming characters",
+                "example": {
+                    "pattern": "/foo(?=bar)/",
+                    "text": "foobar foobaz"
+                }
             }, 
             {
                 "name": "Negative Lookahead",
-                "matcher": "(?!...)"
+                "matcher": "(?!...)",
+                "description": "Starting at the current position in the expression, ensures that the given pattern will not match. Does not consume characters.",
+                "example": {
+                    "pattern": "/foo(?!bar)/",
+                    "text": "foobar foobaz"
+                }
             }, 
             {
                 "name": "Positive Lookbehind",
-                "matcher": "(?<=...)"
+                "matcher": "(?<=...)",
+                "description": "Ensures that the given pattern will match, ending at the current position in the expression. The pattern be of variable width. Does not consume any characters. Note that this feature is not yet supported on all browsers; use at your own discretion!",
+                "example": {
+                    "pattern": "/(?<=foo)bar/",
+                    "text": "foobar fuubar"
+                }
             }, 
             {
                 "name": "Negative Lookbehind",
-                "matcher": "(?<!...)"
+                "matcher": "(?<!...)",
+                "description": "Ensures that the given pattern would not match and end at the current position in the expression. The pattern be of variable width. Does not consume characters.<br/>Note that this feature is not yet supported on all browsers; use at your own discretion!",
+                "example": {
+                    "pattern": "/(?<!not )foo/",
+                    "text": "not foo but foo"
+                }
             }
         ]
     },
     {
         "name": "Character Classes",
+        "icon": "tails",
         "items": [
             {
                 "name": "A single character of: a, b or c",
-                "matcher": "[abc]" 
+                "matcher": "[abc]",
+                "description": "Matches either an a, b or c character",
+                "example": {
+                    "pattern": "/[abc]+/g",
+                    "text": "a bb ccc"
+                }
             },
             {
                 "name": "A character except: a, b or c",
-                "matcher": "[^abc]" 
+                "matcher": "[^abc]",
+                "description": "Matches any character except for an a, b or c",
+                "example": {
+                    "pattern": "/[^abc]+/g",
+                    "text": "Anything but abc."
+                }
             },
             {
                 "name": "A character in the range: a-z",
-                "matcher": "[a-z]"
+                "matcher": "[a-z]",
+                "description": "Matches any characters between a and z, including a and z.",
+                "example": {
+                    "pattern": "/[a-z]+/g",
+                    "text": "Only a-z"
+                }
             },
             {
                 "name": "A character not in the range: a-z",
-                "matcher": "[^a-z]"
+                "matcher": "[^a-z]",
+                "description": "Matches any characters except those in the range a-z.",
+                "example": {
+                    "pattern": "/[^a-z]+/g",
+                    "text": "Anything but a-z."
+                }
             },
             {
                 "name": "A character in the range: a-z or A-Z",
-                "matcher": "[a-zA-Z]"
+                "matcher": "[a-zA-Z]",
+                "description": "Matches any characters between a-z or A-Z. You can combine as much as you please.",
+                "example": {
+                    "pattern": "/[a-zA-Z]+/g",
+                    "text": "abc123DEF"
+                }
             } 
         ]
     },
     {
         "name": "Flags/Modifiers",
+        "icon": "flag",
         "items": [
             {
                 "name": "Global",
-                "matcher": "g" 
+                "matcher": "g",
+                "description": "Tells the engine not to stop after the first match has been found, but rather to continue until no more matches can be found.",
+                "example": {
+                    "pattern": "/this/g",
+                    "text": "match this and again this"
+                }
             },
             {
                 "name": "Multiline",
-                "matcher": "m" 
+                "matcher": "m",
+                "description": "The ^ and $ anchors now match at the beginning/end of each line respectively, instead of beginning/end of the entire string.",
+                "example": {
+                    "pattern": "/^d.+\\d{3}$/m",
+                    "text": "digits coming up 443"
+                }
             },
             {
                 "name": "Case insensitive",
-                "matcher": "i" 
+                "matcher": "i",
+                "description": "A case insensitive match is performed, meaning capital letters will be matched by non-capital letters and vice versa.",
+                "example": {
+                    "pattern": "/a/gi",
+                    "text": "A or a"
+                } 
             },
             {
                 "name": "Sticky - searches in strings only from the index of the last match",
-                "matcher": "y" 
+                "matcher": "y",
+                "description": "Regex will continue parsing the string keeping in mind the last match location. If the next match is not located directly after the last, this next match is discarded.<br/>In the example below, the first alternate matched \"a\", and the second one matched \"bc\", however once it bumped into \"X\" none of the alternatives resulted in a match. Therefore the engine cannot return the next \"a\" as a match because \"X\" is not the last location where a match occurred.",
+                "example": {
+                    "pattern": "/a|bc/gy",
+                    "text": "abcXabc"
+                }
             },
             {
                 "name": "Enable unicode support",
-                "matcher": "u" 
+                "matcher": "u",
+                "description": "Allows regex to match unicode characters via dotall and unicode escape sequences, as well as ES6 unicode code point escapes such as \\u{1D306}.",
+                "example": {
+                    "pattern": "/𝌆/u",
+                    "text": "a𝌆b"
+                }
             }
         ]
     },
     {
         "name": "Substitution",
+        "icon": "cut",
         "items": [
             {
                 "name": "Contents in capture group 1",
-                "matcher": "$1" 
+                "matcher": "$1",
+                "description": "This will return a string with the contents from the first capture group. The number, in this case 1, can be any number as long as it corresponds to a valid capture group."
             },
             {
                 "name": "Contents before match",
-                "matcher": "$`" 
+                "matcher": "$`",
+                "description": "This will return a portion of the source string that precedes the match."
             },
             {
                 "name": "Contents after match",
-                "matcher": "$'" 
+                "matcher": "$'",
+                "description": "This will return a portion of the source string that follows the match."
             },
             {
                 "name": "Complete match contents",
-                "matcher": "$&" 
+                "matcher": "$&",
+                "description": "This will return a string with the complete match result from the regex."
             },
             {
                 "name": "Hexadecimal replacement values",
-                "matcher": "\\x20" 
+                "matcher": "\\x20",
+                "description": "You can use hexadecimals to insert any character into the replacement string using the standard syntax."
             },
             {
                 "name": "Hexadecimal replacement values",
-                "matcher": "\\x{06fa}" 
+                "matcher": "\\x{06fa}",
+                "description": "You can use hexadecimals to insert any character into the replacement string using the standard syntax."
             },
             {
                 "name": "Tab",
-                "matcher": "\\t" 
+                "matcher": "\\t",
+                "description": "Insert a tab character."
             },
             {
                 "name": "Carriage return",
-                "matcher": "\\r" 
+                "matcher": "\\r",
+                "description": "Insert a carriage return character."
             },
             {
                 "name": "Newline",
-                "matcher": "\\n" 
+                "matcher": "\\n",
+                "description": "Insert a newline character."
             },
             {
                 "name": "Form-feed",
-                "matcher": "\\f" 
-            },
-            {
-                "name": "Uppercase Transformation",
-                "matcher": "\\U" 
-            },
-            {
-                "name": "Lowercase Transformation",
-                "matcher": "\\L" 
-            },
-            {
-                "name": "Terminate any Transformation",
-                "matcher": "\\E" 
+                "matcher": "\\f",
+                "description": "Insert a form-feed character."
             }
         ]
     }

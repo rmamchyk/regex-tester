@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './QuickReference.scss';
 import referenceData from './quick-reference.json';
 import MaterialIcon from 'material-icons-react';
+import {
+    Tails, Database, Flag, Asterisk, Cut,
+    Radio, Anchor, Star, Meta
+} from '../images';
 
 interface IState {
     selectedGroup: IReferenceGroup | null;
@@ -12,6 +16,7 @@ interface IState {
 
 interface IReferenceGroup {
     name: string;
+    icon: string;
     items: IReferenceItem[];
 }
 
@@ -38,6 +43,7 @@ class QuickReference extends Component<{}, IState> {
         // add 'All Tokens' group
         this.data.unshift({
             name: 'All Tokens',
+            icon: 'database',
             items: this.data.filter(group => group.name !== 'Common Tokens').flatMap(group => group.items)
         })
     }
@@ -52,6 +58,21 @@ class QuickReference extends Component<{}, IState> {
 
     onCloseItem = () => {
         this.setState({ selectedItem: null });
+    }
+
+    renderGroupIcon(icon: string) {
+        switch (icon) {
+            case 'database': return <Database className="group__icon" />
+            case 'tails': return <Tails className="group__icon" />
+            case 'flag': return <Flag className="group__icon" />
+            case 'asterisk': return <Asterisk className="group__icon" />
+            case 'cut': return <Cut className="group__icon" />
+            case 'radio': return <Radio className="group__icon" />
+            case 'anchor': return <Anchor className="group__icon bigger" />
+            case 'star': return <Star className="group__icon bigger" />
+            case 'meta': return <Meta className="group__icon" />
+            default: return <Tails className="group__icon" />
+        }
     }
 
     private applyHighlights(text: string, regexString: string) {
@@ -94,6 +115,7 @@ class QuickReference extends Component<{}, IState> {
             if (searchItems.length) {
                 searchResults.push({
                     name: 'Full Search Result',
+                    icon: 'database',
                     items: searchItems
                 });
                 this.data.forEach(group => {
@@ -129,7 +151,7 @@ class QuickReference extends Component<{}, IState> {
                             <h6>{selectedItem.name}</h6>
                             <MaterialIcon icon="close" onClick={this.onCloseItem} />
                         </div>
-                        <div className="container">
+                        <div className="main">
                             <div className="matcher">
                                 <div className="matcher__info">
                                     <div className="matcher__info--value">
@@ -159,16 +181,15 @@ class QuickReference extends Component<{}, IState> {
                         <div className="header">
                             <h6>Quick reference</h6>
                         </div>
-                        <div className="container">
+                        <div className="main">
                             <div className="sidebar">
-                                
                                 <ul className="groups">
                                     <li>
                                         <input className="search" type="text" value={searchTerm} onChange={this.onSearchChange} placeholder="Search reference"/>
                                     </li>
                                     {(searchTerm ? searchResults : this.data).map((group, idx) => (
                                         <li className={`group ${group === selectedGroup ? 'selected' : ''}`} key={idx} onClick={() => this.onSelectGroup(group)}>
-                                            {/* <div className="group-item__icon"></div> */}
+                                            {this.renderGroupIcon(group.icon)}
                                             <div className="group__title">{group.name}</div>
                                             {group === selectedGroup && <MaterialIcon icon="check" onClick={this.onCloseItem} />}
                                         </li>
@@ -177,9 +198,9 @@ class QuickReference extends Component<{}, IState> {
                             </div>
                             <div className="content">
                                 <ul className="items">
-                                    {searchTerm && !searchResults.length && 
+                                    {/* {searchTerm && !searchResults.length && 
                                         <li className="no-data">No data found</li>
-                                    }
+                                    } */}
                                     {selectedGroup && selectedGroup.items.map((item, idx) => (
                                         <li className="item" key={idx} onClick={() => this.onSelectItem(item)}>
                                             <div className="item__title">{item.name}</div>

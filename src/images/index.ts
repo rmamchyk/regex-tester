@@ -1,0 +1,9 @@
+export { ReactComponent as Tails } from './tails.svg';
+export { ReactComponent as Database } from './database.svg';
+export { ReactComponent as Flag } from './flag.svg';
+export { ReactComponent as Asterisk } from './asterisk.svg';
+export { ReactComponent as Cut } from './cut.svg';
+export { ReactComponent as Radio } from './radio.svg';
+export { ReactComponent as Anchor } from './anchor.svg';
+export { ReactComponent as Star } from './star.svg';
+export { ReactComponent as Meta } from './meta.svg';
